@@ -69,18 +69,24 @@ function readLine() {
  */
 
 function timeConversion(s) {
-    let splitString = s.split(':');
-    console.log(splitString);
+    //Limited number of input and conversions. Brute force for brevity and discuss optimizations later.
 
+    //Split the string on ':'
+    let splitString = s.split(':');
+
+    //If 12PM return the string in the correct format
     if (splitString[0] == "12" && splitString[2].includes("PM")) {
         return splitString[0] + ":" + splitString[1] + ":" + splitString[2].substr(0,2)}
 
+    //If 12AM convert and return the string in the correct format
     else if (splitString[0] == "12" && splitString[2].includes("AM")) {
         return '00' + ":" + splitString[1] + ":" + splitString[2].substr(0,2)}
 
+    //If >12AM convert and return the string in the correct format
     else if (splitString[0] != "12" && splitString[2].includes("AM")) {
         return splitString[0] + ":" + splitString[1] + ":" + splitString[2].substr(0,2)}
 
+    //If >12PM convert, add 12, and return the string in the correct format
     else if (splitString[0] != "12" && splitString[2].includes("PM")) {
         return (parseInt(splitString[0])+12) + ":" + splitString[1] + ":" + splitString[2].substr(0,2)}
 
