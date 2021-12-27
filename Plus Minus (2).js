@@ -31,26 +31,23 @@ function readLine() {
  */
 
 function plusMinus(arr) {
+    let amtPositive = 0;
+    let amtNegative = 0;
+    let amtZero = 0
 
-    //Variables
-    let numPositive = 0;
-    let numNegative = 0;
-    let numZeros = 0;
-    let arrLength = arr.length;
+    arr.forEach((el) => {
+        if (el === 0) amtPositive++;
+        if (el <= -1) amtNegative++;
+        if (el >= 1) amtZero++;
+    })
 
+    let ratioPositive = amtPositive/arr.length;
+    let ratioNegative = amtNegative/arr.length;
+    let ratioZero = amtZero/arr.length;
 
-    //Loop array and increment numPositive, numNegative, numZeros
-    for (let i = 0; i < arr.length; i++){
-        if (arr[i] > 0) numPositive++;
-        else if (arr[i] < 0) numNegative++;
-        else numZeros++;
-    }
-
-
-    //Console the results to satisy the expected output
-    console.log((numPositive / arrLength).toFixed(6))
-    console.log((numNegative / arrLength).toFixed(6))
-    console.log((numZeros / arrLength).toFixed(6))
+    console.log(ratioPositive.toFixed(6));
+    console.log(ratioNegative.toFixed(6));
+    console.log(ratioZero.toFixed(6));
 }
 
 function main() {
@@ -60,3 +57,5 @@ function main() {
 
     plusMinus(arr);
 }
+
+plusMinus([1,1,0,-1,-1])
