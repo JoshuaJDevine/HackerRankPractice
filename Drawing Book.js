@@ -5,25 +5,33 @@ function pageCount(n, p) {
 
     for (let i = 0; i < book.length; i++) {
         if (book[i].length === 1){
-            if (book[i] === p) break;
+            if (book[i][0] === p) {
+                break;
+            }
         }
         else {
-            if (book[i][0] === p || book[i][1] === p) break;
+            if (book[i][0] === p || book[i][1] === p) {
+                break;
+            }
         }
         frontTurns++;
     }
 
     for (let i = book.length-1; i > 0; i--) {
         if (book[i].length === 1){
-            if (book[i] === p) break;
+            if (book[i][0] === p) {
+                break;
+            }
         }
         else {
-            if (book[i][0] === p || book[i][1] === p) break;
+            if (book[i][0] === p || book[i][1] === p) {
+                break;
+            }
         }
         backTurns++;
     }
 
-    return Math.max(frontTurns, backTurns);
+    return Math.min(frontTurns, backTurns);
 }
 
 function BuildBook(n){
@@ -55,4 +63,4 @@ function BuildBook(n){
     return totalPagesArr;
 }
 
-console.log(pageCount(5, 3));
+console.log(pageCount(6, 2));
