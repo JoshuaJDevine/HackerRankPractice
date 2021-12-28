@@ -1,39 +1,11 @@
+//Get Page Count
 function pageCount(n, p) {
     let book = BuildBook(n);
-    let frontTurns = 0;
-    let backTurns = 0;
-
-    for (let i = 0; i < book.length; i++) {
-        if (book[i].length === 1){
-            if (book[i][0] === p) {
-                break;
-            }
-        }
-        else {
-            if (book[i][0] === p || book[i][1] === p) {
-                break;
-            }
-        }
-        frontTurns++;
-    }
-
-    for (let i = book.length-1; i > 0; i--) {
-        if (book[i].length === 1){
-            if (book[i][0] === p) {
-                break;
-            }
-        }
-        else {
-            if (book[i][0] === p || book[i][1] === p) {
-                break;
-            }
-        }
-        backTurns++;
-    }
-
-    return Math.min(frontTurns, backTurns);
+    return Math.min(GetMinFrontTurns(book, p), GetMinBackTurns(book, p));
 }
 
+
+//Helper Functions
 function BuildBook(n){
     let totalPages;
     let totalPagesArr = [];
@@ -62,5 +34,40 @@ function BuildBook(n){
     }
     return totalPagesArr;
 }
+function GetMinFrontTurns(book, target){
+    let frontTurns = 0;
+    for (let i = 0; i < book.length; i++) {
+        if (book[i].length === 1){
+            if (book[i][0] === target) {
+                break;
+            }
+        }
+        else {
+            if (book[i][0] === target || book[i][1] === target) {
+                break;
+            }
+        }
+        frontTurns++;
+    }
 
-console.log(pageCount(6, 2));
+    return frontTurns;
+}
+function GetMinBackTurns(book, target){
+    let backTurns = 0;
+
+    for (let i = book.length-1; i > 0; i--) {
+        if (book[i].length === 1){
+            if (book[i][0] === target) {
+                break;
+            }
+        }
+        else {
+            if (book[i][0] === target || book[i][1] === target) {
+                break;
+            }
+        }
+        backTurns++;
+    }
+
+    return backTurns;
+}
